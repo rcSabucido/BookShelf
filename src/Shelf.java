@@ -4,8 +4,8 @@ import java.util.Map;
 
 public class Shelf {
     private final HashMap<String, Character> shelf;
-    private final int rows = 3;
-    private final int columns = 3;
+    private final int rows = 6;
+    private final int columns = 6;
 
     public Shelf() {
         shelf = new HashMap<>();
@@ -14,6 +14,7 @@ public class Shelf {
     public void addBook(int row, int column, char bookId) {
         if (isValidPosition(row, column)) {
             shelf.put(getKey(row, column), bookId);
+            System.out.println(bookId + " has been added to the shelf!");
         } else {
             System.out.println("Invalid position");
         }
@@ -32,9 +33,35 @@ public class Shelf {
     public void removeBook(int row, int column) {
         if (isValidPosition(row, column)) {
             shelf.remove(getKey(row, column));
+            System.out.println("Book removed from the shelf at position " + getKey(row, column));
         } else {
             System.out.println("Invalid position");
         }
+    }
+
+    public void removeBookID(char BookId) {
+        String keyToRemove = null;
+        for (Map.Entry<String, Character> entry : shelf.entrySet()) {
+            if (entry.getValue() == BookId) {
+                keyToRemove = entry.getKey();
+            }
+        }
+
+        if (keyToRemove != null) {
+            shelf.remove(keyToRemove);
+            System.out.println("Book " + BookId + " removed from position " + keyToRemove);
+        } else {
+            System.out.println("Book " + BookId + " not found");
+        }
+    }
+
+    public String findBook(char bookId) {
+        for (Map.Entry<String, Character> entry : shelf.entrySet()) {
+            if (entry.getValue() == bookId) {
+                return entry.getKey();
+            }
+        }
+        return null;
     }
 
     public void displayShelf() {
@@ -54,25 +81,6 @@ public class Shelf {
             }
         } catch (IOException e) {
             System.out.println("Error saving to file: " + e.getMessage());
-        }
-    }
-
-    public void loadFromFile(String filename) {
-        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(",");
-                if (parts.length != 3) {
-                    int row = Integer.parseInt(parts[0]);
-                    int column = Integer.parseInt(parts[1]);
-                    char bookId = parts[2].charAt(0);
-                    if (isValidPosition(row, column)) {
-                        shelf.put(getKey(row, column), bookId);
-                    }
-                }
-            }
-        } catch (IOException e) {
-            System.out.println("Error loading from file: " + e.getMessage());
         }
     }
 
