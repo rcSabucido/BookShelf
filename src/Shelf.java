@@ -11,6 +11,8 @@ public class Shelf {
         shelf = new HashMap<>();
     }
 
+    // add or update a book by taking the row, column, and bookId
+    // adds it on our hashmap
     public void addBook(int row, int column, char bookId) {
         if (isValidPosition(row, column)) {
             shelf.put(getKey(row, column), bookId);
@@ -20,6 +22,7 @@ public class Shelf {
         }
     }
 
+    // Read the book ID by taking row and column
     public char getBook(int row, int column) {
         char emptySlot = '-';
         if (isValidPosition(row, column)) {
@@ -30,6 +33,7 @@ public class Shelf {
         }
     }
 
+    // Delete a book by taking row and column
     public void removeBook(int row, int column) {
         if (isValidPosition(row, column)) {
             shelf.remove(getKey(row, column));
@@ -39,6 +43,7 @@ public class Shelf {
         }
     }
 
+    // Delete a book by taking book id and iterating through hashmap values
     public void removeBookID(char BookId) {
         String keyToRemove = null;
         for (Map.Entry<String, Character> entry : shelf.entrySet()) {
@@ -55,6 +60,7 @@ public class Shelf {
         }
     }
 
+    // find book by taking book id and iterating through every value of hashmap
     public String findBook(char bookId) {
         for (Map.Entry<String, Character> entry : shelf.entrySet()) {
             if (entry.getValue() == bookId) {
@@ -64,6 +70,7 @@ public class Shelf {
         return null;
     }
 
+    // displays current state of shelf
     public void displayShelf() {
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
@@ -73,6 +80,7 @@ public class Shelf {
         }
     }
 
+    // saves current state of shelf to csv file
     public void saveToFile(String filename) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
             for (Map.Entry<String, Character> entry : shelf.entrySet()) {
@@ -84,10 +92,12 @@ public class Shelf {
         }
     }
 
+    // returns the string of our hashmap keys
     private String getKey(int row, int column) {
         return row + "," + column;
     }
 
+    // checks if inputted position is in bounds of the shelf
     private boolean isValidPosition(int row, int column) {
         return row >= 0 && row < rows && column >= 0 && column < columns;
     }
