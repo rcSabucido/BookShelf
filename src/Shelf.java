@@ -61,7 +61,7 @@ public class Shelf {
     }
 
     // find book by taking book id and iterating through every value of hashmap
-    public String findBook(char bookId) {
+    public String getBookId(char bookId) {
         for (Map.Entry<String, Character> entry : shelf.entrySet()) {
             if (entry.getValue() == bookId) {
                 return entry.getKey();
@@ -92,7 +92,7 @@ public class Shelf {
         }
     }
 
-    // returns the string of our hashmap keys by combining both row and column into one string 
+    // returns the string of our hashmap keys by combining both row and column into one string
     private String getKey(int row, int column) {
         return row + "," + column;
     }

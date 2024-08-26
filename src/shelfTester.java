@@ -34,7 +34,7 @@ public class shelfTester {
         shelf.addBook(0, 3, 'D');
 
         startTime = System.nanoTime();
-        String pos = shelf.findBook('C');
+        String pos = shelf.getBookId('C');
         endTime = System.nanoTime();
         System.out.println("Time taken for findBook to find " + pos + " : " + (endTime - startTime) / 1000000 + " ms");
         System.out.println();

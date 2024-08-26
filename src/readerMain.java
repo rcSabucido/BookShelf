@@ -57,16 +57,34 @@ public class readerMain {
                     }
                     break;
                 case 3:
-                    System.out.print("Enter book id: ");
-                    char bookId = sc.next().charAt(0);
-                    String pos = shelf.findBook(bookId);
-                    if (pos != null) {
-                        System.out.println("Book " + bookId + " has been found in the shelf at position " + pos);
-                        System.out.println();
+                    System.out.print("Find book by position or id? (enter pos/id): ");
+                    String findOption = sc.next();
+                    if (findOption.equals("pos")) {
+                        System.out.print("Enter row: ");
+                        int posRow = sc.nextInt();
+                        System.out.print("Enter column: ");
+                        int posColumn = sc.nextInt();
+                        char bookId = shelf.getBook(posRow, posColumn);
+                        if (bookId == '-') {
+                            System.out.println("Book not found.");
+                        } else {
+                            System.out.println("Book " + bookId + " found.");
+                        }
+                    } else if (findOption.equals("id")) {
+                        System.out.print("Enter book id: ");
+                        char findBookId = sc.next().charAt(0);
+                        String position = shelf.getBookId(findBookId);
+                        if (position != null) {
+                            System.out.println("Book " + findBookId + " found at position " + position);
+                            System.out.println();
+                        } else {
+                            System.out.println("Book not found.");
+                            System.out.println();
+                        }
                     } else {
-                        System.out.println("Book " + bookId + " not found in the shelf!");
+                        System.out.println("Wrong input, please try again.");
                         System.out.println();
-                }
+                    }
                     break;
                 case 4:
                     System.out.println("Current shelf: ");
