@@ -1,5 +1,5 @@
 # BookShelf
-This is a DS & A project created by Ryz Clyd Sabucido and Gab Cabico.
+This is a DS & A project created by Ryz Clyd Sabucido and Karsten Gabriel Cabico.
 This project is to be submitted to our DS & A instructor.
 
 ## How it works:
