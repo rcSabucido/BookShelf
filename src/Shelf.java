@@ -33,6 +33,17 @@ public class Shelf {
         }
     }
 
+    // find book by taking book id and iterating through every value of hashmap
+    public String getBookId(char bookId) {
+        for (Map.Entry<String, Character> entry : shelf.entrySet()) {
+            if (entry.getValue() == bookId) {
+                return entry.getKey();
+            }
+        }
+        return null;
+    }
+
+
     // Delete a book by taking row and column
     public void removeBook(int row, int column) {
         if (isValidPosition(row, column)) {
@@ -58,16 +69,6 @@ public class Shelf {
         } else {
             System.out.println("Book " + BookId + " not found");
         }
-    }
-
-    // find book by taking book id and iterating through every value of hashmap
-    public String getBookId(char bookId) {
-        for (Map.Entry<String, Character> entry : shelf.entrySet()) {
-            if (entry.getValue() == bookId) {
-                return entry.getKey();
-            }
-        }
-        return null;
     }
 
     // displays current state of shelf
