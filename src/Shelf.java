@@ -28,7 +28,6 @@ public class Shelf {
         if (isValidPosition(row, column)) {
             return shelf.getOrDefault(getKey(row, column), emptySlot);
         } else {
-            System.out.println("Invalid position");
             return emptySlot;
         }
     }
