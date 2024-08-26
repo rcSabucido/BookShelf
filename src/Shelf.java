@@ -4,8 +4,8 @@ import java.util.Map;
 
 public class Shelf {
     private final HashMap<String, Character> shelf;
-    private final int rows = 9;
-    private final int columns = 9;
+    private final int rows = 3;
+    private final int columns = 3;
 
     public Shelf() {
         shelf = new HashMap<>();
@@ -58,7 +58,6 @@ public class Shelf {
     }
 
     public void loadFromFile(String filename) {
-        shelf.clear();
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             String line;
             while ((line = reader.readLine()) != null) {
