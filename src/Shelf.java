@@ -92,7 +92,7 @@ public class Shelf {
         }
     }
 
-    // returns the string of our hashmap keys
+    // returns the string of our hashmap keys by combining both row and column into one string 
     private String getKey(int row, int column) {
         return row + "," + column;
     }
